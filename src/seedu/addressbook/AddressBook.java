@@ -1014,11 +1014,12 @@ public class AddressBook {
      * Returns true if the given person's data fields are valid
      *
      * @param person String array representing the person (used in internal data)
+     * @return boolean true if all the person's data fields are valid
      */
     private static boolean isPersonDataValid(String[] person) {
-        return isPersonNameValid(person[PERSON_DATA_INDEX_NAME])
-                && isPersonPhoneValid(person[PERSON_DATA_INDEX_PHONE])
-                && isPersonEmailValid(person[PERSON_DATA_INDEX_EMAIL]);
+        return isPersonNameValid(getNameFromPerson(person))
+                && isPersonPhoneValid(getPhoneFromPerson(person))
+                && isPersonEmailValid(getEmailFromPerson(person));
     }
 
     /*
