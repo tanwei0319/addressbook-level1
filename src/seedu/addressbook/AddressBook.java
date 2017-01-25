@@ -939,6 +939,7 @@ public class AddressBook {
      * Format is [name] p/[phone] e/[email], phone and email positions can be swapped.
      *
      * @param personData person string representation
+     * @return boolean true if argument string is valid and can extract person data (email, name, phone)
      */
     private static boolean isPersonDataExtractableFrom(String personData) {
         final String matchAnyPersonDataPrefix = PERSON_DATA_PREFIX_PHONE + '|' + PERSON_DATA_PREFIX_EMAIL;
