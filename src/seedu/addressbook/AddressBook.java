@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
@@ -480,8 +481,10 @@ public class AddressBook {
      */
     private static ArrayList<String[]> getPersonsWithNameContainingAnyKeyword(Collection<String> keywords) {
         final ArrayList<String[]> matchedPersons = new ArrayList<>();
+        keywords = toLowerCase(keywords);
+        
         for (String[] person : getAllPersonsInAddressBook()) {
-            final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
+            final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person).toLowerCase()));
             final boolean hasCommonWord = !Collections.disjoint(wordsInName, keywords);
             if (hasCommonWord) {
                 matchedPersons.add(person);
@@ -489,6 +492,26 @@ public class AddressBook {
         }
         return matchedPersons;
     }
+    
+    /**
+     * Make all alphabets in given strings lowercase
+     * 
+     * @param stringd to be converted to lowercase
+     * @return converted lowercase strings
+     */
+    private static ArrayList<String> toLowerCase(Collection<String> strings) {
+    	ArrayList<String> lowercaseStrings = new ArrayList<String>();
+    	Iterator<String> strIter = strings.iterator();
+    	
+    	while(strIter.hasNext()) {
+    		String tempString = strIter.next();
+    		lowercaseStrings.add(tempString.toLowerCase());
+    	}
+    	
+    	return lowercaseStrings;
+    }
+    
+    
 
     /**
      * Deletes person identified using last displayed index.
