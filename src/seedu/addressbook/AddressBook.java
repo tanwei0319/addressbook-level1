@@ -468,7 +468,8 @@ public class AddressBook {
         final ArrayList<String[]> matchedPersons = new ArrayList<>();
         for (String[] person : getAllPersonsInAddressBook()) {
             final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            final boolean hasCommonWord = !Collections.disjoint(wordsInName, keywords);
+            if (hasCommonWord) {
                 matchedPersons.add(person);
             }
         }
